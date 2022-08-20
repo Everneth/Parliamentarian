@@ -5,6 +5,7 @@ using Parliamentarian.Services;
 using Parliamentarian.Models.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Discord.Interactions;
+using Parliamentarian.Extensions;
 using Discord.WebSocket;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Parliamentarian.Commands
         [SlashCommand("propose", "Make a proposal to parliament")]
         public async Task MakeProposal(string title, AmendmentType amendmentType, AmendmentSection amendmentSection, string text)
         {
-            await RespondAsync(String.Format($"TITLE: {title}\nTYPE: {Enum.GetName(typeof(AmendmentType), amendmentType)}\nSECTION: {Enum.GetName(typeof(AmendmentSection), amendmentSection)}\nTEXT: {text}"));
+            await RespondAsync(String.Format($"TITLE: {title}\nTYPE: {amendmentType.GetDisplayName()}\nSECTION: {amendmentSection.GetDisplayName()}\nTEXT: {text}"));
         }
     }
 }
