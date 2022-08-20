@@ -12,13 +12,15 @@ namespace Parliamentarian.Services
     public class CommandHandlerService
     {
         private readonly DiscordSocketClient _client;
+        private readonly ConfigService _config;
         private readonly InteractionService _commands;
         private IServiceProvider _services;
 
         public CommandHandlerService(IServiceProvider services, DiscordSocketClient client,
-            InteractionService commands)
+            ConfigService config, InteractionService commands)
         {
             _client = client;
+            _config = config;
             _services = services;
             _commands = commands;
 
@@ -37,7 +39,7 @@ namespace Parliamentarian.Services
         {
             try
             {
-                await _commands.RegisterCommandsToGuildAsync(987026872640622612L);
+                await _commands.RegisterCommandsToGuildAsync(_config.BotConfig.GuildId);
             }
             catch (Exception error)
             {

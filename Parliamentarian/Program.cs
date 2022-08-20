@@ -51,7 +51,7 @@ namespace Parliamentarian
 		private async Task OnReady()
 		{
 			// cache all members of the Everneth discord
-			await _client.GetGuild(177976693942779904L).DownloadUsersAsync();
+			await _client.GetGuild(_config.BotConfig.GuildId).DownloadUsersAsync();
 		}
 
 		private Task Log(LogMessage msg)
